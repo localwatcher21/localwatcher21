@@ -1,8 +1,11 @@
 /** @param {NS} ns */
 export async function main(ns) {
-
+    // getting the server
+    
     let target = ns.args[0];
-  
+
+    //opening ports then nuking them
+    
     if (ns.fileExists('SQLInject.exe', 'home')) {
      ns.sqlinject(target);
     }
@@ -18,9 +21,14 @@ export async function main(ns) {
     if (!ns.hasRootAccess(target)) {
       ns.nuke(target);
     }
-  
+
+    //making the threshholds to keep money high and security low
+    
     let moneythresh = ns.getServerMaxMoney(target) * 0.75;
     let securitythresh = ns.getServerSecurityLevel + 5;
+
+    //main loop that does everything
+
     while (true) {
       if (ns.getServerMoneyAvailable > moneythresh) {
         await ns.grow(target);
