@@ -1,3 +1,6 @@
+// you can hack multiple servers by running this script but with different args/server names
+// can also be multi threaded 
+
 /** @param {NS} ns */
 export async function main(ns) {
     // getting the server
