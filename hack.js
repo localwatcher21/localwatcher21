@@ -28,14 +28,14 @@ export async function main(ns) {
     //making the threshholds to keep money high and security low
     
     let moneythresh = ns.getServerMaxMoney(target) * 0.75;
-    let securitythresh = ns.getServerSecurityLevel + 5;
+    let securitythresh = ns.getServerSecurityLevel(target) + 5;
 
     //main loop that does everything
 
     while (true) {
-      if (ns.getServerMoneyAvailable > moneythresh) {
+      if (ns.getServerMoneyAvailable(target) < moneythresh) {
         await ns.grow(target);
-      }else if (ns.getServerSecurityLevel < securitythresh) {
+      }else if (ns.getServerSecurityLevel(target) < securitythresh) {
         await ns.hack(target);
       } else {
         await ns.weaken(target);
